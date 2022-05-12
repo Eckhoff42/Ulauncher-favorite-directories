@@ -1,0 +1,32 @@
+{
+  "required_api_version": "^2.0.0",
+  "name": "Directory opener",
+  "description": "Quickly open predefined file directories in your file browser",
+  "developer_name": "Magnus Wiik Eckhoff",
+  "icon": "images/icon.png",
+  "options": {
+    "query_debounce": 0.05
+  },
+  "preferences": [
+    {
+      "id": "f",
+      "type": "keyword",
+      "name": "Directory opener",
+      "description": "Quickly connect to predefined bluetooth devices",
+      "default_value": "f"
+    },
+    {
+      "id": "root_dir",
+      "type": "input",
+      "name": "root directory",
+      "default_value": "~/"
+    },
+    {
+      "id": "directory_list",
+      "type": "input",
+      "name": "Directory list",
+      "description": "List of directories. Format: \"Downloads, Documents\"",
+      "default_value": ""
+    }
+  ]
+}
