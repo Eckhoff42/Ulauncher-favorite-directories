@@ -2,6 +2,8 @@
 
 Open the file directories you use the most in you file browser.
 
-![bt_menu](https://user-images.githubusercontent.com/42439472/164915659-777e0c2e-bb73-4a45-9ae7-63ab21f1808e.png)
+![files](https://user-images.githubusercontent.com/42439472/168078449-64ac47f6-ac8e-4564-8f2c-e3e92df05940.png)
+
+
 
 This extension is listed on the Ulauncher extensions page.
