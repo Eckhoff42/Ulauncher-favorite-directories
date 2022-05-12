@@ -33,7 +33,7 @@
       "type": "input",
       "name": "Directory list",
       "description": "List of directories. Format: \"Downloads, Documents\"",
-      "default_value": ""
+      "default_value": "Downloads"
     }
   ]
 }
