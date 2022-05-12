@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+import os.path
 from time import sleep
 from ulauncher.api.client.Extension import Extension
 from ulauncher.api.client.EventListener import EventListener
@@ -59,16 +60,9 @@ class ItemEnterEventListener(EventListener):
             return HideWindowAction()
 
         root_dir = extension.preferences.get("root_dir")
-        print(f"\n\n\ncalling: nautilus {root_dir}{data}&\n\n\n")
-        # connect to device
-        ret = os.system(
-            f"bash -c 'nautilus {root_dir}{data}&'")
+        browser = extension.preferences.get("default_filebrowser")
 
-        prompt = "opening" + data
-
-        return RenderResultListAction([ExtensionResultItem(icon='images/dir.png',
-                                                           name=prompt,
-                                                           on_enter=HideWindowAction())])
+        os.popen(f"{browser} {root_dir}{data}")
 
 
 if __name__ == '__main__':

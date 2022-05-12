@@ -16,6 +16,13 @@
       "default_value": "f"
     },
     {
+      "id": "default_filebrowser",
+      "type": "input",
+      "name": "Default filebrowser",
+      "description": "The filebrowser you want to open the files in",
+      "default_value": "nautilus"
+    },
+    {
       "id": "root_dir",
       "type": "input",
       "name": "root directory",
