@@ -31,7 +31,8 @@ class KeywordQueryEventListener(EventListener):
 
         # get devices from preferences
         if extension.preferences.get('directory_list') is not None:
-            directories = extension.preferences['directory_list'].split(',')
+            directories = [x.strip() for x in extension.preferences['directory_list'].split(
+                ',')]
 
             # giv user feedback if no devices has been specified
             if len(directories) == 0:
