@@ -29,7 +29,7 @@ class KeywordQueryEventListener(EventListener):
         directories = []
         logger.info('preferences %s' % json.dumps(extension.preferences))
 
-        # get devices from preferences
+        # get directories from preferences
         if extension.preferences.get('directory_list') is not None:
             directories = [x.strip() for x in extension.preferences['directory_list'].split(
                 ',')]
@@ -42,12 +42,12 @@ class KeywordQueryEventListener(EventListener):
                                                  on_enter=ExtensionCustomAction("none", keep_app_open=True)))
                 return RenderResultListAction(items)
 
-        # connect options
+
         for i in range(len(directories)):
             key = directories[i]
             data = directories[i]
             items.append(ExtensionResultItem(icon='images/dir.png',
-                                             name="open %s" % key,
+                                             name="Open %s" % key,
                                              on_enter=ExtensionCustomAction(data, keep_app_open=False)))
 
         return RenderResultListAction(items)
