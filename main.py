@@ -44,7 +44,7 @@ class KeywordQueryEventListener(EventListener):
                 return RenderResultListAction(items)
 
         if arg is not None and len(arg) > 0:
-            directories = [x for x in directories if arg in x]
+            directories = [x for x in directories if arg.lower() in x.lower()]
 
         for i in range(len(directories)):
             key = directories[i]
