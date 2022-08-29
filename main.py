@@ -27,6 +27,7 @@ class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
         items = []
         directories = []
+        arg = event.get_argument()
         logger.info('preferences %s' % json.dumps(extension.preferences))
 
         # get directories from preferences
@@ -34,14 +35,16 @@ class KeywordQueryEventListener(EventListener):
             directories = [x.strip() for x in extension.preferences['directory_list'].split(
                 ',')]
 
-            # giv user feedback if no devices has been specified
+            # giv user feedback if no directory has been specified
             if len(directories) == 0:
                 items.append(ExtensionResultItem(icon='images/dir.png',
                                                  name="No directories specified",
-                                                 description="Add them in settings->extentions->Directory opener->Directory list",
+                                                 description="Add them in settings->extensions->Directory opener->Directory list",
                                                  on_enter=ExtensionCustomAction("none", keep_app_open=True)))
                 return RenderResultListAction(items)
 
+        if arg is not None and len(arg) > 0:
+            directories = [x for x in directories if arg.lower() in x.lower()]
 
         for i in range(len(directories)):
             key = directories[i]
