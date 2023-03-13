@@ -32,7 +32,8 @@ class KeywordQueryEventListener(EventListener):
 
         # get directories from preferences
         if extension.preferences.get('directory_list') is not None:
-            directories = [x.strip() for x in extension.preferences['directory_list'].split(',')]
+            directories = [x.strip() for x in extension.preferences['directory_list'].split(
+                ',')]
 
             # giv user feedback if no directory has been specified
             if len(directories) == 0:
@@ -42,22 +43,20 @@ class KeywordQueryEventListener(EventListener):
                                                  on_enter=ExtensionCustomAction("none", keep_app_open=True)))
                 return RenderResultListAction(items)
 
-            # load alias for directories
-            aliases = {}
-            for dir_path in directories:
-                alias = extension.preferences.get(f"alias_{dir_path}")
-                if alias:
-                    aliases[dir_path] = alias
-
         if arg is not None and len(arg) > 0:
             directories = [x for x in directories if arg.lower() in x.lower()]
 
-        for i in range(len(directories)):
-            dir_path = directories[i]
-            alias = aliases.get(dir_path, dir_path) 
+        for directory in directories:
+            # Split the directory entry into path and alias
+            path, alias = directory.split("|") if "|" in directory else (directory, directory)
+
+            # Replace tilde with home directory path
+            path = os.path.expanduser(path)
+
+            # Append the item with the alias
             items.append(ExtensionResultItem(icon='images/dir.png',
-                                             name="Open {alias}",
-                                             on_enter=ExtensionCustomAction(dir_path, keep_app_open=False)))
+                                             name=f"Open {alias}",
+                                             on_enter=ExtensionCustomAction(path, keep_app_open=False)))
 
         return RenderResultListAction(items)
 
