@@ -40,7 +40,7 @@
       "type": "input",
       "name": "Alias",
       "description": "Alias for the directory",
-      "default_value": ""
+      "default_value": "Alias"
     }
   ]
 }
