@@ -46,12 +46,17 @@ class KeywordQueryEventListener(EventListener):
         if arg is not None and len(arg) > 0:
             directories = [x for x in directories if arg.lower() in x.lower()]
 
-        for i in range(len(directories)):
-            key = directories[i]
-            data = directories[i]
+        for directory in directories:
+            # Split the directory entry into path and alias
+            path, alias = directory.split("|") if "|" in directory else (directory, directory)
+
+            # Replace tilde with home directory path
+            path = os.path.expanduser(path)
+
+            # Append the item with the alias
             items.append(ExtensionResultItem(icon='images/dir.png',
-                                             name="Open %s" % key,
-                                             on_enter=ExtensionCustomAction(data, keep_app_open=False)))
+                                             name=f"Open {alias}",
+                                             on_enter=ExtensionCustomAction(path, keep_app_open=False)))
 
         return RenderResultListAction(items)
 
