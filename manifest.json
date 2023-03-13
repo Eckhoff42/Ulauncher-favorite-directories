@@ -35,5 +35,12 @@
       "description": "List of directories. Format: \"Downloads, Documents\"",
       "default_value": "Downloads"
     }
+    {
+      "id": "alias",
+      "type": "input",
+      "name": "Alias",
+      "description": "Alias for the directory",
+      "default_value": ""
+    }
   ]
 }
